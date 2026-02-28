@@ -4,6 +4,7 @@ summary: PolyStride is a framework for discovering dynamic, contact-rich gaits i
 status: active
 lead: Peiyu Ma
 image: /images/projects/polystride.svg
+cardImage: /images/projects/polystride-card.png
 publications:
   - To be updated
 funding:

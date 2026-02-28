@@ -4,6 +4,7 @@ summary: Kinematics-based force inference for closed-chain robots.
 status: active
 lead: Peiyu Ma
 image: /images/projects/soft-grasping-perception.svg
+cardImage: /images/projects/soft-card.png
 publications:
   - To be updated
 funding:
