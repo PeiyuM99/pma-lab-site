@@ -1,9 +1,9 @@
 ---
 name: PolyStride
-summary: PolyStride is an framework for discovering dynamic, contact-rich gaits in reconfigurable polyhedral robots operating on unknown terrain.
+summary: PolyStride is a framework for discovering dynamic, contact-rich gaits in reconfigurable polyhedral robots operating on unknown terrain.
 status: active
 lead: Peiyu Ma
-image: /images/projects/openclaw-deploy.svg
+image: /images/projects/polystride.svg
 publications:
   - To be updated
 funding:

@@ -1,9 +1,9 @@
 ---
-name: 立方体机器人
-summary: 基于立方体几何构型设计的可重构多步态地面移动机构
+name: Cubic Robot
+summary: A reconfigurable multi-gait terrestrial mobile mechanism based on cubic geometric architecture.
 status: active
 lead: Peiyu Ma
-image: /images/projects/eval-bench.svg
+image: /images/projects/cubic-robot.svg
 publications:
   - To be updated
 funding:

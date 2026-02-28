@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'>
+  <rect width='800' height='600' fill='#edf2fa'/>
+  <rect x='230' y='140' width='340' height='340' fill='#b4c8e7'/>
+  <rect x='280' y='90' width='340' height='340' fill='none' stroke='#8ea8cf' stroke-width='16'/>
+  <text x='400' y='540' text-anchor='middle' font-size='38' font-family='Arial' fill='#354969'>Cubic Robot</text>
+</svg>

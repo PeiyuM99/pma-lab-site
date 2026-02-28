@@ -1,0 +1,5 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'>
+  <rect width='800' height='600' fill='#e9eef6'/>
+  <polygon points='400,120 620,260 520,470 280,470 180,260' fill='#b8cae8'/>
+  <text x='400' y='540' text-anchor='middle' font-size='34' font-family='Arial' fill='#354969'>Reconfigurable Tetrahedral Robot</text>
+</svg>

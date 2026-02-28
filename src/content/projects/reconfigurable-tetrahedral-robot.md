@@ -1,9 +1,9 @@
 ---
-name: 可重构四面体机器人
-summary: 基于四面体几何构型设计的可重构多步态地面移动机构
+name: Reconfigurable Tetrahedral Robot
+summary: A reconfigurable multi-gait terrestrial mobile mechanism based on tetrahedral geometric architecture.
 status: active
 lead: Peiyu Ma
-image: /images/projects/openclaw-deploy.svg
+image: /images/projects/reconfigurable-tetrahedral-robot.svg
 publications:
   - To be updated
 funding:

@@ -1,0 +1,8 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'>
+  <rect width='800' height='600' fill='#eef3fb'/>
+  <path d='M90 430 Q180 360 270 430 T450 430 T630 430 T770 430' fill='none' stroke='#90aad3' stroke-width='18'/>
+  <circle cx='220' cy='280' r='55' fill='#bcd0eb'/>
+  <circle cx='400' cy='250' r='55' fill='#a8c0e3'/>
+  <circle cx='580' cy='280' r='55' fill='#bcd0eb'/>
+  <text x='400' y='540' text-anchor='middle' font-size='46' font-family='Arial' fill='#354969'>PolyStride</text>
+</svg>

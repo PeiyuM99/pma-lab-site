@@ -1,9 +1,9 @@
 ---
-name: 柔性抓取与感知
+name: Soft Grasping and Perception
 summary: Kinematics-based force inference for closed-chain robots.
 status: active
 lead: Peiyu Ma
-image: /images/projects/eval-bench.svg
+image: /images/projects/soft-grasping-perception.svg
 publications:
   - To be updated
 funding:

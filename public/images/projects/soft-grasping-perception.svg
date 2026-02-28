@@ -1,0 +1,8 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'>
+  <rect width='800' height='600' fill='#edf2fb'/>
+  <rect x='180' y='180' width='100' height='230' rx='30' fill='#c0d2eb'/>
+  <rect x='310' y='130' width='100' height='280' rx='30' fill='#afc6e6'/>
+  <rect x='440' y='160' width='100' height='250' rx='30' fill='#c0d2eb'/>
+  <rect x='570' y='210' width='80' height='200' rx='30' fill='#afc6e6'/>
+  <text x='400' y='540' text-anchor='middle' font-size='34' font-family='Arial' fill='#354969'>Soft Grasping and Perception</text>
+</svg>
