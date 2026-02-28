@@ -1,12 +1,14 @@
 ---
 name: Peiyu Ma
-role: Principal Investigator
+role: Principal Investigator, Imperial College London (Dyson School of Design Engineering)
 email: peiyu@example.edu
-website: https://example.edu/~peiyu
+website: https://www.researchgate.net/profile/Peiyu-Ma-2
 interests:
+  - Robotics
+  - Wearable Sensing
   - AI Systems
-  - Developer Tooling
+  - Human-Centered Engineering
 order: 1
 ---
 
-Short bio placeholder.
+Peiyu Ma is affiliated with Imperial College London, Dyson School of Design Engineering.
