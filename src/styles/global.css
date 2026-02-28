@@ -44,8 +44,8 @@ body {
 	line-height: 1.7;
 }
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
+	width: min(1800px, calc(100% - 2em));
+	max-width: 1800px;
 	margin: auto;
 	padding: 3em 1em;
 }
