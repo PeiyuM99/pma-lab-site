@@ -21,6 +21,8 @@ function groupKey(role: string) {
 }
 
 const grouped = Object.fromEntries(groups.map((g) => [g.key, allPeople.filter((p) => groupKey(p.data.role) === g.key)]));
+const base = import.meta.env.BASE_URL;
+const toAssetUrl = (p: string) => (p.startsWith('http') ? p : `${base}${p.replace(/^\//, '')}`);
 ---
 
 <PageLayout title="People">
@@ -50,7 +52,7 @@ const grouped = Object.fromEntries(groups.map((g) => [g.key, allPeople.filter((p
                     <h3>{p.data.name}</h3>
 
                     <div class="person-head">
-                      {p.data.avatar && <img class="avatar" src={p.data.avatar} alt={`${p.data.name} avatar`} />}
+                      {p.data.avatar && <img class="avatar" src={toAssetUrl(p.data.avatar)} alt={`${p.data.name} avatar`} />}
                       <div class="person-meta">
                         <p><strong>{p.data.role}</strong></p>
                         {p.data.email && <p><strong>Email:</strong> <a href={`mailto:${p.data.email}`}>{p.data.email}</a></p>}

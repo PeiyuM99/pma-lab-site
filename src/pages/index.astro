@@ -1,10 +1,13 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const heroSrc = `${base}images/hero/hero.jpeg`;
 ---
 
 <PageLayout title="Home" description="Homepage of TopoRobotics Lab">
   <h1>TopoRobotics Lab</h1>
-  <img class="hero" src="/images/hero/hero.jpeg" alt="TopoRobotics Lab hero image" />
+  <img class="hero" src={heroSrc} alt="TopoRobotics Lab hero image" />
   <p>We build reliable, practical systems at the intersection of AI, software engineering, and human-centered tooling.</p>
   <p>This site is intentionally concise: people, papers, projects, updates, and ways to collaborate.</p>
 </PageLayout>
