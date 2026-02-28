@@ -6,6 +6,7 @@ const people = defineCollection({
     role: z.string(),
     email: z.string().email().optional(),
     website: z.string().url().optional(),
+    avatar: z.string().optional(),
     interests: z.string().optional(),
     order: z.number().default(100),
     bio: z.string().optional(),

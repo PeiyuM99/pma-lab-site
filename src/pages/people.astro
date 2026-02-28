@@ -47,6 +47,7 @@ const grouped = Object.fromEntries(groups.map((g) => [g.key, allPeople.filter((p
               <div class="cards-grid">
                 {grouped[g.key].map((p) => (
                   <article class="person-card">
+                    {p.data.avatar && <img class="avatar" src={p.data.avatar} alt={`${p.data.name} avatar`} />}
                     <h3>{p.data.name}</h3>
                     <p><strong>{p.data.role}</strong></p>
                     {p.data.email && <p><strong>Email:</strong> <a href={`mailto:${p.data.email}`}>{p.data.email}</a></p>}
@@ -126,6 +127,15 @@ const grouped = Object.fromEntries(groups.map((g) => [g.key, allPeople.filter((p
     border-radius: 10px;
     padding: 1.35rem 1.5rem;
     background: #fff;
+  }
+
+  .avatar {
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+    border-radius: 999px;
+    border: 1px solid #d9e1ee;
+    margin-bottom: 0.75rem;
   }
 
   .person-card p,
