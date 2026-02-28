@@ -67,27 +67,47 @@ const toAssetUrl = (p: string) => (p.startsWith('http') ? p : `${base}${p.replac
                           {p.data.avatar && <img class="avatar" src={toAssetUrl(p.data.avatar)} alt={`${p.data.name} avatar`} />}
                           <div class="person-meta">
                             <p><strong>{p.data.role}</strong></p>
-                            {p.data.email && <p><strong>Email:</strong> <a href={`mailto:${p.data.email}`}>{p.data.email}</a></p>}
-                            {p.data.website && <p><strong>Website:</strong> <a href={p.data.website} target="_blank">{p.data.website}</a></p>}
+                            <p>
+                              <strong>Email:</strong>
+                              {p.data.email ? (
+                                <> <a href={`mailto:${p.data.email}`}>{p.data.email}</a></>
+                              ) : (
+                                <> TBA</>
+                              )}
+                            </p>
+                            <p>
+                              <strong>Website:</strong>
+                              {p.data.website ? (
+                                <> <a href={p.data.website} target="_blank">{p.data.website}</a></>
+                              ) : (
+                                <> TBA</>
+                              )}
+                            </p>
                           </div>
                         </div>
 
-                        {p.data.interests && <p><strong>Research interests:</strong> {p.data.interests}</p>}
-                        {p.data.bio && <p><strong>Bio:</strong> {p.data.bio}</p>}
+                        <p><strong>Research interests:</strong> {p.data.interests ?? 'TBA'}</p>
+                        <p><strong>Bio:</strong> {p.data.bio ?? 'TBA'}</p>
 
-                        {p.data.education && p.data.education.length > 0 && (
-                          <div>
-                            <p><strong>Education</strong></p>
+                        <div>
+                          <p><strong>Education</strong></p>
+                          {p.data.education && p.data.education.length > 0 ? (
                             <ul>
                               {p.data.education.map((e) => (
                                 <li>{e.degree}, {e.school}, {e.year}</li>
                               ))}
                             </ul>
-                          </div>
-                        )}
+                          ) : (
+                            <p>TBA</p>
+                          )}
+                        </div>
 
-                        {p.data.recruitment && <p><strong>Open positions / collaboration:</strong> {p.data.recruitment}</p>}
-                        {p.data.office && <p><strong>Office:</strong> {p.data.office}</p>}
+                        {(p.data.recruitment || p.data.office) && (
+                          <>
+                            <p><strong>Open positions / collaboration:</strong> {p.data.recruitment ?? 'TBA'}</p>
+                            <p><strong>Office:</strong> {p.data.office ?? 'TBA'}</p>
+                          </>
+                        )}
                       </>
                     )}
                   </article>
