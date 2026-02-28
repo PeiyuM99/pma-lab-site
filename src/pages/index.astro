@@ -10,14 +10,21 @@ const heroSrc = `${base}images/hero/hero.jpeg`;
   <img class="hero" src={heroSrc} alt="TopoRobotics Lab hero image" />
   <p>
     We are a geometry-driven robotics lab dedicated to turning structural principles into robots that can transform,
-    reconfigure, and adapt. By leveraging mechanisms, kinematic constraints, and polyhedral architectures, we develop modular
-    systems such as cube and tetrahedral robots that can change shape to overcome obstacles, squeeze through confined spaces,
-    and recover from impacts. Our research spans the full stack from geometric design and modeling to control and embodied
-    sensing, aiming to achieve reliable mobility and environmental awareness in unknown, complex terrain where vision or GPS
-    may be limited. We explore how reconfigurable morphology can simplify decision-making, improve stability, and enable
-    versatile behaviors across diverse surfaces and gaps. These capabilities support high-impact missions in extreme settings,
-    including post-disaster reconnaissance and search-and-rescue operations, as well as planetary exploration in harsh,
-    unstructured environments.
+    reconfigure, and adapt.
+  </p>
+
+  <p>
+    By leveraging mechanisms, kinematic constraints, and polyhedral architectures, we develop modular systems such as cube and
+    tetrahedral robots that can change shape to overcome obstacles, squeeze through confined spaces, and recover from impacts.
+    Our research spans the full stack from geometric design and modeling to control and embodied sensing, aiming to achieve
+    reliable mobility and environmental awareness in unknown, complex terrain where vision or GPS may be limited.
+  </p>
+
+  <p>
+    We explore how reconfigurable morphology can simplify decision-making, improve stability, and enable versatile behaviors
+    across diverse surfaces and gaps. These capabilities support high-impact missions in extreme settings, including
+    post-disaster reconnaissance and search-and-rescue operations, as well as planetary exploration in harsh, unstructured
+    environments.
   </p>
 </PageLayout>
 
@@ -29,5 +36,10 @@ const heroSrc = `${base}images/hero/hero.jpeg`;
     border-radius: 12px;
     border: 1px solid #dce4f1;
     margin: 0.5rem 0 1.25rem;
+  }
+
+  p {
+    text-align: justify;
+    text-justify: inter-word;
   }
 </style>
