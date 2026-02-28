@@ -102,12 +102,8 @@ const toAssetUrl = (p: string) => (p.startsWith('http') ? p : `${base}${p.replac
                           )}
                         </div>
 
-                        {(p.data.recruitment || p.data.office) && (
-                          <>
-                            <p><strong>Open positions / collaboration:</strong> {p.data.recruitment ?? 'TBA'}</p>
-                            <p><strong>Office:</strong> {p.data.office ?? 'TBA'}</p>
-                          </>
-                        )}
+                        <p><strong>Open positions / collaboration:</strong> {p.data.recruitment ?? 'TBA'}</p>
+                        <p><strong>Office:</strong> {p.data.office ?? 'TBA'}</p>
                       </>
                     )}
                   </article>
