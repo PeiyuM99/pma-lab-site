@@ -91,7 +91,7 @@ const grouped = Object.fromEntries(groups.map((g) => [g.key, allPeople.filter((p
 
   .people-layout {
     display: grid;
-    grid-template-columns: 260px minmax(0, 1fr);
+    grid-template-columns: 200px minmax(0, 1fr);
     gap: 2rem;
     align-items: start;
   }
@@ -117,15 +117,20 @@ const grouped = Object.fromEntries(groups.map((g) => [g.key, allPeople.filter((p
 
   .cards-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+    gap: 1.25rem;
   }
 
   .person-card {
     border: 1px solid #e6e6e6;
     border-radius: 10px;
-    padding: 1.25rem 1.4rem;
+    padding: 1.35rem 1.5rem;
     background: #fff;
+  }
+
+  .person-card p,
+  .person-card li {
+    line-height: 1.75;
   }
 
   .empty {
