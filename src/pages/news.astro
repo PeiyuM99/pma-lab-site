@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+
+const news = (await getCollection('news')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<PageLayout title="News">
+  <h1>News</h1>
+  <ul>
+    {news.map((n) => (
+      <li>
+        <strong>{n.data.title}</strong> ({n.data.date.toISOString().slice(0,10)})
+      </li>
+    ))}
+  </ul>
+</PageLayout>

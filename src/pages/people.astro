@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+
+const people = (await getCollection('people')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<PageLayout title="People">
+  <h1>People</h1>
+  <ul>
+    {people.map((p) => (
+      <li>
+        <strong>{p.data.name}</strong> — {p.data.role}
+        {p.data.email && <> · <a href={`mailto:${p.data.email}`}>{p.data.email}</a></>}
+        {p.data.website && <> · <a href={p.data.website} target="_blank">website</a></>}
+      </li>
+    ))}
+  </ul>
+</PageLayout>
