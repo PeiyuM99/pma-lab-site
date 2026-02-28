@@ -4,6 +4,7 @@ summary: A reconfigurable multi-gait terrestrial mobile mechanism based on cubic
 status: active
 lead: Peiyu Ma
 image: /images/projects/cubic-robot.svg
+cardImage: /images/projects/cubic-card.jpeg
 publications:
   - To be updated
 funding:

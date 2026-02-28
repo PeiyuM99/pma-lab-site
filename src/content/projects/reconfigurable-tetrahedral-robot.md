@@ -4,6 +4,7 @@ summary: A reconfigurable multi-gait terrestrial mobile mechanism based on tetra
 status: active
 lead: Peiyu Ma
 image: /images/projects/reconfigurable-tetrahedral-robot.svg
+cardImage: /images/projects/tetrahedral-card.jpeg
 publications:
   - To be updated
 funding:

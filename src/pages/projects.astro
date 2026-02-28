@@ -14,7 +14,7 @@ const toAssetUrl = (p: string) => (p.startsWith('http') ? p : `${base}${p.replac
     <div class="project-grid">
       {projects.map((p) => (
         <a class="project-card" href={`${base}projects/${p.slug}/`}>
-          <img src={toAssetUrl(p.data.image)} alt={`${p.data.name} image`} />
+          <img src={toAssetUrl(p.data.cardImage ?? p.data.image)} alt={`${p.data.name} image`} />
           <div class="card-body">
             <h2>{p.data.name}</h2>
             <p>{p.data.summary}</p>
