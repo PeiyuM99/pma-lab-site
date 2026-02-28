@@ -24,62 +24,125 @@ const grouped = Object.fromEntries(groups.map((g) => [g.key, allPeople.filter((p
 ---
 
 <PageLayout title="People">
-  <h1>People</h1>
+  <section class="people-shell">
+    <h1>People</h1>
 
-  <div class="people-layout">
-    <aside class="sidebar">
-      <h3>Categories</h3>
-      <ul>
+    <div class="people-layout">
+      <aside class="sidebar">
+        <h3>Categories</h3>
+        <ul>
+          {groups.map((g) => (
+            <li><a href={`#${g.key}`}>{g.label}</a></li>
+          ))}
+        </ul>
+      </aside>
+
+      <section class="content">
         {groups.map((g) => (
-          <li><a href={`#${g.key}`}>{g.label}</a></li>
+          <section id={g.key} class="group-block">
+            <h2>{g.label}</h2>
+            {grouped[g.key].length === 0 ? (
+              <p class="empty">No members yet.</p>
+            ) : (
+              <div class="cards-grid">
+                {grouped[g.key].map((p) => (
+                  <article class="person-card">
+                    <h3>{p.data.name}</h3>
+                    <p><strong>{p.data.role}</strong></p>
+                    {p.data.email && <p>Email: <a href={`mailto:${p.data.email}`}>{p.data.email}</a></p>}
+                    {p.data.website && <p>Website: <a href={p.data.website} target="_blank">{p.data.website}</a></p>}
+                    {p.data.interests && <p>Research interests: {p.data.interests}</p>}
+                    {p.data.bio && <p>Bio: {p.data.bio}</p>}
+
+                    {p.data.education && p.data.education.length > 0 && (
+                      <div>
+                        <p><strong>Education</strong></p>
+                        <ul>
+                          {p.data.education.map((e) => (
+                            <li>{e.degree}, {e.school}, {e.year}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {p.data.recruitment && <p>Open positions / collaboration: {p.data.recruitment}</p>}
+                    {p.data.office && <p>Office: {p.data.office}</p>}
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
         ))}
-      </ul>
-    </aside>
-
-    <section class="content">
-      {groups.map((g) => (
-        <section id={g.key} class="group-block">
-          <h2>{g.label}</h2>
-          {grouped[g.key].length === 0 ? (
-            <p class="empty">No members yet.</p>
-          ) : (
-            grouped[g.key].map((p) => (
-              <article class="person-card">
-                <h3>{p.data.name}</h3>
-                <p><strong>{p.data.role}</strong></p>
-                {p.data.email && <p>Email: <a href={`mailto:${p.data.email}`}>{p.data.email}</a></p>}
-                {p.data.website && <p>Website: <a href={p.data.website} target="_blank">{p.data.website}</a></p>}
-                {p.data.interests && <p>Research interests: {p.data.interests}</p>}
-                {p.data.bio && <p>Bio: {p.data.bio}</p>}
-
-                {p.data.education && p.data.education.length > 0 && (
-                  <div>
-                    <p><strong>Education</strong></p>
-                    <ul>
-                      {p.data.education.map((e) => (
-                        <li>{e.degree}, {e.school}, {e.year}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {p.data.recruitment && <p>Open positions / collaboration: {p.data.recruitment}</p>}
-                {p.data.office && <p>Office: {p.data.office}</p>}
-              </article>
-            ))
-          )}
-        </section>
-      ))}
-    </section>
-  </div>
+      </section>
+    </div>
+  </section>
 </PageLayout>
 
 <style>
-  .people-layout { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; }
-  .sidebar { position: sticky; top: 1rem; align-self: start; }
-  .sidebar ul { padding-left: 1rem; }
-  .group-block { margin-bottom: 2rem; }
-  .person-card { border: 1px solid #e6e6e6; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
-  .empty { color: #666; }
-  @media (max-width: 900px) { .people-layout { grid-template-columns: 1fr; } }
+  .people-shell {
+    max-width: 1200px;
+    width: calc(100% - 3rem);
+    margin: 0 auto;
+  }
+
+  .people-layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 1rem;
+    align-self: start;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fff;
+  }
+
+  .sidebar ul {
+    margin: 0;
+    padding-left: 1rem;
+  }
+
+  .group-block {
+    margin-bottom: 2rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .person-card {
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fff;
+  }
+
+  .empty {
+    color: #666;
+  }
+
+  @media (max-width: 1100px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .people-shell {
+      width: calc(100% - 2rem);
+    }
+    .people-layout {
+      grid-template-columns: 1fr;
+    }
+    .sidebar {
+      position: static;
+    }
+  }
 </style>
