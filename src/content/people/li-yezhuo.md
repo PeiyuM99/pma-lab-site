@@ -3,7 +3,7 @@ name: Yezhuo Li (李晔卓)
 role: PI (Associate Professor)
 email: liyzh@bjtu.edu.cn
 website: https://mece.bjtu.edu.cn/faculty/9621.html
-avatar: /images/people/placeholder-avatar.svg
+avatar: /images/people/li-yezhuo.jpeg
 interests: Robotics and intelligent manufacturing, intelligent equipment technology, robot and intelligent mechanism design, ground mobile mechanisms, reconfigurable robots
 order: 1
 bio: Associate Professor at the School of Mechanical, Electronic and Control Engineering, Beijing Jiaotong University. Research focuses on intelligent reconfigurable robots and mobile mechanism design.
