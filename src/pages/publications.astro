@@ -2,18 +2,112 @@
 import { getCollection } from 'astro:content';
 import PageLayout from '../layouts/PageLayout.astro';
 
-const publications = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
+const publications = await getCollection('publications');
+
+const years = [...new Set(publications.map((p) => p.data.year))].sort((a, b) => b - a);
+
+const groupedByYear = Object.fromEntries(
+  years.map((year) => [
+    year,
+    publications
+      .filter((p) => p.data.year === year)
+      .sort((a, b) => a.data.title.localeCompare(b.data.title, 'en', { sensitivity: 'base' })),
+  ]),
+);
 ---
 
 <PageLayout title="Publications">
-  <h1>Publications</h1>
-  <ul>
-    {publications.map((p) => (
-      <li>
-        <strong>{p.data.title}</strong><br />
-        {p.data.authors.join(', ')}<br />
-        <em>{p.data.venue}</em>, {p.data.year}
-      </li>
-    ))}
-  </ul>
+  <section class="pub-shell">
+    <h1>Publications</h1>
+
+    <div class="pub-layout">
+      <aside class="sidebar">
+        <h3>Years</h3>
+        <ul>
+          {years.map((y) => (
+            <li><a href={`#y-${y}`}>{y}</a></li>
+          ))}
+        </ul>
+      </aside>
+
+      <section class="content">
+        {years.map((y) => (
+          <section id={`y-${y}`} class="year-block">
+            <h2>{y}</h2>
+            <ol>
+              {groupedByYear[y].map((p) => (
+                <li class="pub-item">
+                  <strong>{p.data.title}</strong><br />
+                  {p.data.authors.join(', ')}<br />
+                  <em>{p.data.venue}</em>, {p.data.year}
+                  {p.data.links?.paper && (
+                    <>
+                      {' '}· <a href={p.data.links.paper} target="_blank">paper</a>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </section>
+    </div>
+  </section>
 </PageLayout>
+
+<style>
+  :global(main) {
+    width: min(1800px, calc(100% - 2rem));
+    max-width: 1800px;
+  }
+
+  .pub-shell {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .pub-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 1rem;
+    align-self: start;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fff;
+  }
+
+  .sidebar ul {
+    margin: 0;
+    padding-left: 1rem;
+  }
+
+  .year-block {
+    margin-bottom: 2rem;
+  }
+
+  .pub-item {
+    margin-bottom: 0.9rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    :global(main) {
+      width: calc(100% - 1rem);
+    }
+
+    .pub-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      position: static;
+    }
+  }
+</style>
