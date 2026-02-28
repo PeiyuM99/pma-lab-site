@@ -47,6 +47,9 @@ const projects = defineCollection({
     summary: z.string(),
     status: z.enum(['active', 'completed', 'planned']),
     lead: z.string(),
+    image: z.string(),
+    publications: z.array(z.string()).default([]),
+    funding: z.array(z.string()).default([]),
     links: z
       .object({
         website: z.string().url().optional(),

@@ -1,0 +1,88 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const base = import.meta.env.BASE_URL;
+const toAssetUrl = (p: string) => (p.startsWith('http') ? p : `${base}${p.replace(/^\//, '')}`);
+---
+
+<PageLayout title={project.data.name} description={project.data.summary}>
+  <article class="project-detail">
+    <h1>{project.data.name}</h1>
+    <img src={toAssetUrl(project.data.image)} alt={`${project.data.name} image`} class="hero" />
+
+    <p><strong>Status:</strong> {project.data.status}</p>
+    <p><strong>Lead:</strong> {project.data.lead}</p>
+    <p>{project.data.summary}</p>
+
+    <h2>Project Description</h2>
+    <Content />
+
+    <h2>Publications</h2>
+    {project.data.publications.length === 0 ? (
+      <p>No publications listed yet.</p>
+    ) : (
+      <ul>
+        {project.data.publications.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    )}
+
+    <h2>Funding</h2>
+    {project.data.funding.length === 0 ? (
+      <p>No funding listed yet.</p>
+    ) : (
+      <ul>
+        {project.data.funding.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    )}
+
+    {(project.data.links?.website || project.data.links?.repo) && (
+      <p>
+        {project.data.links?.website && (
+          <>
+            <a href={project.data.links.website} target="_blank">Website</a>{' '}
+          </>
+        )}
+        {project.data.links?.repo && (
+          <>
+            <a href={project.data.links.repo} target="_blank">Repository</a>
+          </>
+        )}
+      </p>
+    )}
+  </article>
+</PageLayout>
+
+<style>
+  :global(main) {
+    width: min(1800px, calc(100% - 2rem));
+    max-width: 1800px;
+  }
+
+  .project-detail {
+    max-width: 1100px;
+  }
+
+  .hero {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #d7e1f0;
+    margin: 0.5rem 0 1rem;
+  }
+</style>
