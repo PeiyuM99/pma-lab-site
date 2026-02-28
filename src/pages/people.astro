@@ -2,18 +2,84 @@
 import { getCollection } from 'astro:content';
 import PageLayout from '../layouts/PageLayout.astro';
 
-const people = (await getCollection('people')).sort((a, b) => a.data.order - b.data.order);
+const allPeople = (await getCollection('people')).sort((a, b) => a.data.order - b.data.order);
+
+const groups = [
+  { key: 'pi', label: 'PI' },
+  { key: 'phd', label: 'PhD' },
+  { key: 'master', label: '硕士' },
+  { key: 'undergrad', label: '本科' },
+];
+
+function groupKey(role: string) {
+  const r = role.toLowerCase();
+  if (r.includes('pi') || r.includes('principal investigator')) return 'pi';
+  if (r.includes('phd')) return 'phd';
+  if (r.includes('硕士') || r.includes('master')) return 'master';
+  if (r.includes('本科') || r.includes('undergrad') || r.includes('bachelor')) return 'undergrad';
+  return 'phd';
+}
+
+const grouped = Object.fromEntries(groups.map((g) => [g.key, allPeople.filter((p) => groupKey(p.data.role) === g.key)]));
 ---
 
 <PageLayout title="People">
   <h1>People</h1>
-  <ul>
-    {people.map((p) => (
-      <li>
-        <strong>{p.data.name}</strong> — {p.data.role}
-        {p.data.email && <> · <a href={`mailto:${p.data.email}`}>{p.data.email}</a></>}
-        {p.data.website && <> · <a href={p.data.website} target="_blank">website</a></>}
-      </li>
-    ))}
-  </ul>
+
+  <div class="people-layout">
+    <aside class="sidebar">
+      <h3>成员类别</h3>
+      <ul>
+        {groups.map((g) => (
+          <li><a href={`#${g.key}`}>{g.label}</a></li>
+        ))}
+      </ul>
+    </aside>
+
+    <section class="content">
+      {groups.map((g) => (
+        <section id={g.key} class="group-block">
+          <h2>{g.label}</h2>
+          {grouped[g.key].length === 0 ? (
+            <p class="empty">暂无成员。</p>
+          ) : (
+            grouped[g.key].map((p) => (
+              <article class="person-card">
+                <h3>{p.data.name}</h3>
+                <p><strong>{p.data.role}</strong></p>
+                {p.data.email && <p>邮箱：<a href={`mailto:${p.data.email}`}>{p.data.email}</a></p>}
+                {p.data.website && <p>主页：<a href={p.data.website} target="_blank">{p.data.website}</a></p>}
+                {p.data.interests && <p>研究方向：{p.data.interests}</p>}
+                {p.data.bio && <p>Bio：{p.data.bio}</p>}
+
+                {p.data.education && p.data.education.length > 0 && (
+                  <div>
+                    <p><strong>教育背景</strong></p>
+                    <ul>
+                      {p.data.education.map((e) => (
+                        <li>{e.degree}，{e.school}，{e.year}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {p.data.recruitment && <p>招生/合作方向：{p.data.recruitment}</p>}
+                {p.data.office && <p>办公地点：{p.data.office}</p>}
+              </article>
+            ))
+          )}
+        </section>
+      ))}
+    </section>
+  </div>
 </PageLayout>
+
+<style>
+  .people-layout { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; }
+  .sidebar { position: sticky; top: 1rem; align-self: start; }
+  .sidebar ul { padding-left: 1rem; }
+  .group-block { margin-bottom: 2rem; }
+  .person-card { border: 1px solid #e6e6e6; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+  .empty { color: #666; }
+  @media (max-width: 900px) { .people-layout { grid-template-columns: 1fr; } }
+</style>

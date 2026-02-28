@@ -8,8 +8,20 @@ const people = defineCollection({
     role: z.string(),
     email: z.string().email().optional(),
     website: z.string().url().optional(),
-    interests: z.array(z.string()).default([]),
+    interests: z.string().optional(),
     order: z.number().default(100),
+    bio: z.string().optional(),
+    education: z
+      .array(
+        z.object({
+          degree: z.string(),
+          school: z.string(),
+          year: z.union([z.string(), z.number()]),
+        }),
+      )
+      .default([]),
+    recruitment: z.string().optional(),
+    office: z.string().optional(),
   }),
 });
 
@@ -20,11 +32,13 @@ const publications = defineCollection({
     authors: z.array(z.string()),
     venue: z.string(),
     year: z.number().int(),
-    links: z.object({
-      paper: z.string().url().optional(),
-      code: z.string().url().optional(),
-      project: z.string().url().optional(),
-    }).optional(),
+    links: z
+      .object({
+        paper: z.string().url().optional(),
+        code: z.string().url().optional(),
+        project: z.string().url().optional(),
+      })
+      .optional(),
     featured: z.boolean().default(false),
   }),
 });
@@ -36,10 +50,12 @@ const projects = defineCollection({
     summary: z.string(),
     status: z.enum(['active', 'completed', 'planned']),
     lead: z.string(),
-    links: z.object({
-      website: z.string().url().optional(),
-      repo: z.string().url().optional(),
-    }).optional(),
+    links: z
+      .object({
+        website: z.string().url().optional(),
+        repo: z.string().url().optional(),
+      })
+      .optional(),
     order: z.number().default(100),
   }),
 });
