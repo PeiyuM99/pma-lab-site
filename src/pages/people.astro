@@ -9,10 +9,12 @@ const groups = [
   { key: 'phd', label: 'PhD' },
   { key: 'master', label: 'Master' },
   { key: 'undergrad', label: 'Undergraduate' },
+  { key: 'alumni', label: 'Alumni' },
 ];
 
 function groupKey(role: string) {
   const r = role.toLowerCase();
+  if (r.includes('alumni')) return 'alumni';
   if (r.includes('pi') || r.includes('principal investigator')) return 'pi';
   if (r.includes('phd')) return 'phd';
   if (r.includes('master')) return 'master';
@@ -51,31 +53,43 @@ const toAssetUrl = (p: string) => (p.startsWith('http') ? p : `${base}${p.replac
                   <article class="person-card">
                     <h3>{p.data.name}</h3>
 
-                    <div class="person-head">
-                      {p.data.avatar && <img class="avatar" src={toAssetUrl(p.data.avatar)} alt={`${p.data.name} avatar`} />}
-                      <div class="person-meta">
-                        <p><strong>{p.data.role}</strong></p>
-                        {p.data.email && <p><strong>Email:</strong> <a href={`mailto:${p.data.email}`}>{p.data.email}</a></p>}
-                        {p.data.website && <p><strong>Website:</strong> <a href={p.data.website} target="_blank">{p.data.website}</a></p>}
-                      </div>
-                    </div>
+                    {g.key === 'alumni' ? (
+                      <>
+                        {p.data.avatar && <img class="avatar" src={toAssetUrl(p.data.avatar)} alt={`${p.data.name} avatar`} />}
+                        <p><strong>Degree:</strong> {p.data.degree ?? 'TBA'}</p>
+                        <p><strong>Graduation Year:</strong> {p.data.gradYear ?? 'TBA'}</p>
+                        <p><strong>Thesis:</strong> {p.data.thesis ?? 'TBA'}</p>
+                        <p><strong>Current Position:</strong> {p.data.destination ?? 'TBA'}</p>
+                      </>
+                    ) : (
+                      <>
+                        <div class="person-head">
+                          {p.data.avatar && <img class="avatar" src={toAssetUrl(p.data.avatar)} alt={`${p.data.name} avatar`} />}
+                          <div class="person-meta">
+                            <p><strong>{p.data.role}</strong></p>
+                            {p.data.email && <p><strong>Email:</strong> <a href={`mailto:${p.data.email}`}>{p.data.email}</a></p>}
+                            {p.data.website && <p><strong>Website:</strong> <a href={p.data.website} target="_blank">{p.data.website}</a></p>}
+                          </div>
+                        </div>
 
-                    {p.data.interests && <p><strong>Research interests:</strong> {p.data.interests}</p>}
-                    {p.data.bio && <p><strong>Bio:</strong> {p.data.bio}</p>}
+                        {p.data.interests && <p><strong>Research interests:</strong> {p.data.interests}</p>}
+                        {p.data.bio && <p><strong>Bio:</strong> {p.data.bio}</p>}
 
-                    {p.data.education && p.data.education.length > 0 && (
-                      <div>
-                        <p><strong>Education</strong></p>
-                        <ul>
-                          {p.data.education.map((e) => (
-                            <li>{e.degree}, {e.school}, {e.year}</li>
-                          ))}
-                        </ul>
-                      </div>
+                        {p.data.education && p.data.education.length > 0 && (
+                          <div>
+                            <p><strong>Education</strong></p>
+                            <ul>
+                              {p.data.education.map((e) => (
+                                <li>{e.degree}, {e.school}, {e.year}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {p.data.recruitment && <p><strong>Open positions / collaboration:</strong> {p.data.recruitment}</p>}
+                        {p.data.office && <p><strong>Office:</strong> {p.data.office}</p>}
+                      </>
                     )}
-
-                    {p.data.recruitment && <p><strong>Open positions / collaboration:</strong> {p.data.recruitment}</p>}
-                    {p.data.office && <p><strong>Office:</strong> {p.data.office}</p>}
                   </article>
                 ))}
               </div>
@@ -151,6 +165,7 @@ const toAssetUrl = (p: string) => (p.startsWith('http') ? p : `${base}${p.replac
     object-fit: cover;
     border-radius: 12px;
     border: 1px solid #d9e1ee;
+    margin-bottom: 0.6rem;
   }
 
   .person-meta {

@@ -19,6 +19,10 @@ const people = defineCollection({
         }),
       )
       .default([]),
+    degree: z.string().optional(),
+    gradYear: z.union([z.string(), z.number()]).optional(),
+    thesis: z.string().optional(),
+    destination: z.string().optional(),
     recruitment: z.string().optional(),
     office: z.string().optional(),
   }),
