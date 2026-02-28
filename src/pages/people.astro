@@ -49,10 +49,10 @@ const grouped = Object.fromEntries(groups.map((g) => [g.key, allPeople.filter((p
                   <article class="person-card">
                     <h3>{p.data.name}</h3>
                     <p><strong>{p.data.role}</strong></p>
-                    {p.data.email && <p>Email: <a href={`mailto:${p.data.email}`}>{p.data.email}</a></p>}
-                    {p.data.website && <p>Website: <a href={p.data.website} target="_blank">{p.data.website}</a></p>}
-                    {p.data.interests && <p>Research interests: {p.data.interests}</p>}
-                    {p.data.bio && <p>Bio: {p.data.bio}</p>}
+                    {p.data.email && <p><strong>Email:</strong> <a href={`mailto:${p.data.email}`}>{p.data.email}</a></p>}
+                    {p.data.website && <p><strong>Website:</strong> <a href={p.data.website} target="_blank">{p.data.website}</a></p>}
+                    {p.data.interests && <p><strong>Research interests:</strong> {p.data.interests}</p>}
+                    {p.data.bio && <p><strong>Bio:</strong> {p.data.bio}</p>}
 
                     {p.data.education && p.data.education.length > 0 && (
                       <div>
@@ -65,8 +65,8 @@ const grouped = Object.fromEntries(groups.map((g) => [g.key, allPeople.filter((p
                       </div>
                     )}
 
-                    {p.data.recruitment && <p>Open positions / collaboration: {p.data.recruitment}</p>}
-                    {p.data.office && <p>Office: {p.data.office}</p>}
+                    {p.data.recruitment && <p><strong>Open positions / collaboration:</strong> {p.data.recruitment}</p>}
+                    {p.data.office && <p><strong>Office:</strong> {p.data.office}</p>}
                   </article>
                 ))}
               </div>
